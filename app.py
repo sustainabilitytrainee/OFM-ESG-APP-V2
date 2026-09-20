@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_file, jsonify
-import pdfplumber, openpyxl, os, io, tempfile, json, re
+import pypdf, openpyxl, os, io, tempfile, json, re
 import google.generativeai as genai
 
 app = Flask(__name__)
@@ -16,8 +16,8 @@ MONTH_MAP = {
 
 def extract_bill(pdf_bytes):
     # Extract text from PDF
-    with pdfplumber.open(io.BytesIO(pdf_bytes)) as pdf:
-        text = "\n".join(p.extract_text() or "" for p in pdf.pages)
+    reader = pypdf.PdfReader(io.BytesIO(pdf_bytes))
+    text = "\n".join(page.extract_text() or "" for page in reader.pages)
 
     # Use Gemini to extract the fields
     genai.configure(api_key=GEMINI_API_KEY)
