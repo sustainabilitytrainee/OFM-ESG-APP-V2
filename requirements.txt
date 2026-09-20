@@ -2,4 +2,5 @@ flask==3.0.3
 pdfplumber==0.11.4
 openpyxl==3.1.5
 gunicorn==22.0.0
-google-generativeai==0.7.2
+google-generativeai==0.8.3
+protobuf==4.25.5
