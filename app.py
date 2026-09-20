@@ -21,7 +21,7 @@ def extract_bill(pdf_bytes):
 
     # Use Gemini to extract the fields
     genai.configure(api_key=GEMINI_API_KEY)
-    model = genai.GenerativeModel("gemini-1.5-flash")
+    model = genai.GenerativeModel("gemini-2.0-flash")
 
     prompt = f"""You are extracting data from an Oman electricity bill (Nama utility company).
 Extract these three fields from the bill text below:
